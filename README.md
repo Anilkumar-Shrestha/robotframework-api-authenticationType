@@ -1,5 +1,5 @@
-# API-Authentications-RFTest
-API-Authentications-RFTest is a project that helps to learn about different API authentication types and writing the test for each types in RobotFramework.
+## robotframework-api-authenticationType
+robotframework-api-authenticationType is a project that helps to learn about different API authentication types and writing the test for each types in RobotFramework.
 
 ### Table of Contents
 
@@ -25,7 +25,7 @@ API-Authentications-RFTest is a project that helps to learn about different API 
 #####  1. Definitions <a name="def"></a>
 >   *1.1 What is Authentication?<a name="authenticationDefinition"></a>*
     
->   Authentication is when an entity proves an identity. In other words, Authentication proves that you are who you say you are. This is like having a driver license which is given by a trusted authority that the requester, such as a police officer, can use as evidence that suggests you are in fact who you say you are.
+>   Normally, a web service needs to know to whom it's providing the service. Thus the API consumers must authenticate themselves—proving that “they are who they say they are” via various authentication methods. A good authentication method protects the sensitive information exchanged between the client and the server. Thus, Authentication is when an entity proves an identity. In other words, Authentication proves that you are who you say you are. This is like having a driver license which is given by a trusted authority that the requester, such as a police officer, can use as evidence that suggests you are in fact who you say you are.
 
 >   *1.2 What is Authorization?<a name="authorizationDefinition"><a/>*
 
