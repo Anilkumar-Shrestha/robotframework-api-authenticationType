@@ -2,6 +2,8 @@
 API-Authentications-RFTest is a project that helps to learn about different API authentication types and writing the test for each types in RobotFramework.
 
 ### Table of Contents
+
+#### [Prerequisites](#prereq)
 #### 1. [Definitions](#def)
 >>  ##### 1.1 [What is Authentication?](#authenticationDefinition)
 >>  ##### 1.2 [What is Authorization?](#authorizationDefinition)
@@ -11,6 +13,14 @@ API-Authentications-RFTest is a project that helps to learn about different API 
 #### 4. [Basic Authentication](#basicAuth)
 #### 5. [API Key Authentication](#apiKey)
 #### 6. [OAuth (Bearer) Authentication](#oauthBearer)
+
+#####   Prerequisites <a name="prereq"></a>
+1.  Need to install robotframework and request library
+    ```
+    pip install robotframework
+    pip install robotframework-requests
+    ```
+2.  Need to understand basic Get/Post request.
 
 #####  1. Definitions <a name="def"></a>
 >   *1.1 What is Authentication?<a name="authenticationDefinition"></a>*
@@ -41,7 +51,7 @@ There are also api where we don't need authentication. (No Auth)
 ##### 3. NO Authentication <a name="noAuth"><a/>
 While most APIs require access via API keys (which are similar to passwords), or have complex methods of authentication and authorization, there are also quite a few APIs with no requirements at all.
 Lets try this out. This is really simple and easy to begin with.
-Run [No_auth.robot](Authentication_type\no_auth.robot) testfile.
+Run [No_auth.robot](/Authentication_type/no_auth.robot) testfile.
 ```
 robot Authentication_type\no_auth.robot 
 ```
@@ -53,7 +63,11 @@ curl https://api.publicapis.org/random?auth=null
 ##### 4. Basic Authentication <a name="basicAuth"><a/>
 You send your username/password alongside every API call. Basic Authentication is the least secure of the supported authentication mechanisms. Your credentials are not encrypted or hashed; they are Base64-encoded only.
 So, Nowadays, Basic authentication has been deprecated and instead of Basic Authentication mostly use is OAuth (Bearer) Authentication.
-For sample test, you can run the [basic_authentication.robot](Authentication_type\basic_authentication.robot) test file.
+For sample test, you can run the [basic_authentication.robot](/Authentication_type/basic_authentication.robot) test file.
+
+```
+robot Authentication_type\basic_authentication.robot
+```
 
 Test Cases:
 1. Basic Authentication to login using username and Password.
@@ -119,8 +133,10 @@ After this,we need to enable API & Services for Places.
 
 Now, we are ready to hit the API.
 
-For sample test, you can run the [keyapi_authentication.robot](Authentication_type\keyapi_authentication.robot) test file.
-
+For sample test, you can run the [keyapi_authentication.robot](/Authentication_type/keyapi_authentication.robot) test file.
+```
+robot Authentication_type\keyapi_authentication.robot
+```
 Note: *You must enable Billing on the Google Cloud Project at https://console.cloud.google.com/project/_/billing/enable to see the exact response data information*
 
 *else you will get the response but no exact places value which should work fine for testing purpose*
@@ -148,7 +164,10 @@ For this, we are going to use petfinder.com api to get Bearer token. We need to 
 
 Now, we have got ClientID and client_secret keys, we can start our test.
 
-For sample test, you can check code & run the [oauth_bearer_authentication.robot](Authentication_type\oauth_bearer_authentication.robot) test file.
+For sample test, you can check code & run the [oauth_bearer_authentication.robot](/Authentication_type/oauth_bearer_authentication.robot) test file.
+```
+robot Authentication_type\oauth_bearer_authentication.robot
+```
 This includes 
 - Requesting to get a Bearer access token which is done in KW : GET OAUTH ACCESS TOKEN FOR THE PETFINDER API
 - Using the response access token in Authorization: Bearer ${token} in header section of other API to get request from server.
