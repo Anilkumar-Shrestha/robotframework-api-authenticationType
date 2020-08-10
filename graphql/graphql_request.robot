@@ -11,6 +11,7 @@ ${access_token}    9269e9c5c266b4ea27b3598cc645fa67    # need to change here wit
 
 *** Test Cases ***
 graphql github query request with access token
+    [Documentation]    This is test example to pratcice graphql query request providing access token.
 
     create session    graphql_github_session  ${graphql_github_endpoint}   disable_warnings=1
     ${headers}=    create dictionary    Content-Type=application/json
@@ -24,7 +25,7 @@ graphql github query request with access token
 
 
 graphql github query request passing variable inside query
-
+    [Documentation]    This is test example to pratcice graphql query request providing access token and passing variables in query.
     create session    graphql_github_session  ${graphql_github_endpoint}   disable_warnings=1
     ${headers}=    create dictionary    Content-Type=application/json
     ...               Accept=application/json
@@ -38,7 +39,7 @@ graphql github query request passing variable inside query
 
 
 graphql api query with no Access token
-
+    [Documentation]    This is test example to pratcice graphql query with no access token.
     create session    graphql_swapi_session  ${graphql_swapi_endpoint}   disable_warnings=1
     ${headers}=    create dictionary    Content-Type=application/json
     ...               Accept=application/json
