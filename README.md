@@ -1,5 +1,6 @@
 ## robotframework-api-authenticationType
 robotframework-api-authenticationType is a project that helps to learn about different API authentication types and writing the test for each types in RobotFramework.
+This project also shows how to request graphql query with examples.
 
 ### Table of Contents
 
@@ -13,6 +14,7 @@ robotframework-api-authenticationType is a project that helps to learn about dif
 #### 4. [Basic Authentication](#basicAuth)
 #### 5. [API Key Authentication](#apiKey)
 #### 6. [OAuth (Bearer) Authentication](#oauthBearer)
+#### 7. [graphql](#graphql)
 
 #####   Prerequisites <a name="prereq"></a>
 1.  Need to install robotframework and request library
@@ -21,6 +23,10 @@ robotframework-api-authenticationType is a project that helps to learn about dif
     pip install robotframework-requests
     ```
 2.  Need to understand basic Get/Post request.
+3. Clone this project 
+    ```git
+    git clone https://github.com/Anilkumar-Shrestha/robotframework-api-authenticationType.git
+    ```
 
 #####  1. Definitions <a name="def"></a>
 >   *1.1 What is Authentication?<a name="authenticationDefinition"></a>*
@@ -39,7 +45,7 @@ robotframework-api-authenticationType is a project that helps to learn about dif
 >   *1.3 What is API?<a name="apiDefinition"><a/>*
 
 >   An API is a set of programming code that enables data transmission between one software product and another. It also contains the terms of this data exchange.
->   In Simple term, an API is a messenger that takes requests and tells the system what you want to do and returns the response back to you.
+>   In Simple term, an API is a messenger that takes requests and tells the system what you want to do and returns the response back to you. In short, an API defines how a client can load data from a server.
 
 ##### 2. Types of Authentications<a name="typesOfAuth">
 There are three most common method to perform authentication request with an API.
@@ -178,7 +184,43 @@ curl -d "grant_type=client_credentials&client_id={CLIENT-ID}&client_secret={CLIE
 ```
 The server will send back a access token response, which need to be include in the header of every API request until session expires. 
 
+##### 7. graphql <a name="graphql"></a>
+GraphQL is an open-source data query and manipulation language for APIs, and a runtime for fulfilling queries with existing data. GraphQL enables declarative data fetching where a client can specify exactly what data it needs from an API. Instead of multiple endpoints that return fixed data structures, a GraphQL server only exposes a single endpoint and responds with precisely the data a client asked for.
 
+I would recommend to look into query, mutation and Introspection rootType terminology at least before starting writing graphql api test for QA. If interested you can check Subscriptions too.
+
+For more detail, visit https://graphql.org/ .
+Here I am going to show how to run graphql api from RobotFramework.
+   -    We are going to look simple example using github to extract the login information using graphql query.
+        - First of all we need to create a personal access token to communicate with github graphql server. Github has provided a step by step to get access token so you can follow the link [Create a github personal access tokem](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
+        - After that we can request post request using `query` as below in post body request.
+   
+           ```
+            query{ 
+                viewer {  
+                    login 
+                        }
+                   }
+           ```
+            
+   - The `viewer` field in this query is called the root field of the query. Everything that follows the root field, is called the payload of the query. The only field that’s specified in this query’s payload is `login`.
+   - You can view the [code](/graphql/graphql_request.robot) and run the test `robot graphql\graphql_request.robot`
+
+Also, you can check using curl request below:
+```
+curl -H "Authorization: bearer {access-token}" -X POST -d "{\"query\": \"query { viewer { login }}\" }" https://api.github.com/graphql
+```
+you will get a response as:
+```
+{"data":{"viewer":{"login":"Anilkumar-Shrestha"}}}
+```
+
+   - Next example "graphql github query request passing variable inside query" shows how to pass variable in query graphql request.
+   -  Next example is a graphql request with no access token. This is simple and you can check the [code](/graphql/graphql_request.robot) and run the test `robot graphql\graphql_request.robot`    
+    you can run curl request for this as:
+        ```
+            curl -H "Content-Type: application/json" -X POST -d "{\"query\":\"{ allPersons { name films { director } } } \"}" https://api.graph.cool/simple/v1/swapi
+        ```  
 ---
 
 ---
@@ -189,6 +231,10 @@ https://github.com/public-apis/public-apis
 https://idratherbewriting.com/learnapidoc/docapis_more_about_authorization.html
 
 https://www.petfinder.com/developers/v2/docs/
+
+https://developer.github.com/v4/guides/forming-calls/#authenticating-with-graphql
+
+https://www.howtographql.com/
 
 ---
 ---
